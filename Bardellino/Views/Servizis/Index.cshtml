@@ -1,0 +1,49 @@
+﻿@model IEnumerable<Bardellino.Models.Servizi>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Servizi</h2>
+<div>
+    <a href="@Url.Action("Create", "Servizis")" class="btn btn-primary"><span class="badge">@ViewBag.ServiziCount</span> Aggiungi</a>
+    
+
+
+</div>
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Servizio)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Descrizione)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Pubblica)
+            </th>
+            <th></th>
+        </tr>
+
+    </thead>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Servizio)
+        </td>
+        <td>
+            @Html.Raw(item.Descrizione)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Pubblica)
+        </td>
+        <td>
+            @Html.ActionLink(" ", "Edit", new { id=item.Servizo_Id }, new { @class = "fa fa-pencil-square-o fa-2x text-success", title="Modifica" })
+            @Html.ActionLink(" ", "Delete", new { id=item.Servizo_Id }, new { @class = "fa fa-trash-o fa-2x text-danger", title = "Cancella" })
+        </td>
+    </tr>
+}
+
+</table>

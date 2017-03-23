@@ -1,0 +1,27 @@
+﻿@model Bardellino.Models.Servizi
+
+@{
+    ViewBag.Title = "EditImgP";
+}
+
+<h2>Gestione immagini</h2>
+<h4>
+    Immagine logo <span class="badge">@Html.DisplayFor(model => model.Servizio)</span>
+</h4><hr />
+@using (Html.BeginForm("EditImgP", "Servizis", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <input type="file" name="file" id="file" />
+    <p><span class="label label-success">Consigliata immagine quadrata 200x200</span></p>
+    <h4><span class="label label-danger">@ViewBag.Message</span></h4>
+    <input type="submit" value="Scarica immagne" class="btn btn-success" />
+    @Html.ActionLink("Torna alla galleria", "IndexUt", "Servizis", new { @class="btn btn-primary"})
+}
+<hr />
+<div class="row">
+    <div class="col col-md-2 text-center">
+        <span class="galla1">
+            <a href="@Url.Content("~/Content/Immagini/Eventi/" + Model.Servizo_Id + ".jpg")" data-lightbox="example-set"><img class="example-image" src="@Url.Content("~/Content/Immagini/Servizi/" + Model.Servizo_Id + ".jpg")" /></a>
+        </span>
+    </div>
+</div>
+

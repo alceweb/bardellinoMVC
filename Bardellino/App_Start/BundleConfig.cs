@@ -21,10 +21,16 @@ namespace Bardellino
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js",
-                      "~/Scripts/respond.js"));
+                      "~/Scripts/lightbox-plus-jquery.min.js",
+                      "~/Scripts/bootstrap-datetimepicker.js",
+                      "~/Scripts/moment-with-locales.min.js",
+                     "~/Scripts/respond.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
+                      "~/Content/bootstrap-datetimepicker.min.css",
+                      "~/Content/font-awesome.min.css",
+                      "~/Content/lightbox.css",
                       "~/Content/site.css"));
         }
     }

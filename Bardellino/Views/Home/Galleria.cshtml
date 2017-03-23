@@ -1,0 +1,16 @@
+﻿
+@{
+    ViewBag.Title = "Galleria";
+}
+
+<h2>Galleria</h2>
+@foreach (var item in ViewBag.Immagini)
+{
+    var filename = Path.GetFullPath(item);
+    <div class="col col-md-2 text-center galla">
+        <div>
+            <img src="@filename" />
+            @filename
+        </div>
+    </div>
+}

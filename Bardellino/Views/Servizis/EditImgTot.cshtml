@@ -1,0 +1,33 @@
+﻿
+@{
+    ViewBag.Title = "EditImgTot";
+}
+
+<h2>Gestione immagini</h2>
+<h4>Galleria fotografica <span class="badge">generale</span></h4>
+<hr />
+@using (Html.BeginForm("EditImgTot", "Servizis", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <input type="file" name="files" id="file" multiple />
+    <p><span class="label label-success">Dimensione massima file o gruppo di file 4Mb</span></p>
+    <h4><span class="label label-danger">@ViewBag.Message</span></h4>
+    <input type="submit" value="Upload Image" class="btn btn-primary" />
+}
+<hr />
+<div class="galla1">
+    @foreach (var item in ViewBag.Immagini)
+    {
+        var filename = Path.GetFileName(item);
+        <div >
+            <span>
+                <a href="@Url.Content("~/Content/Immagini/Servizi/Tot/" + @filename)" data-lightbox="example-set"><img src="@Url.Content("~/Content/Immagini/Servizi/Tot/" + @filename)" alt="" /></a>
+                <b><a href="@Url.Action("DeleteImgTot", "Servizis", new {file = @filename})" title="Cancella immagine"> X </a></b>
+            </span>
+        </div>
+    }
+
+</div>
+<h3>
+    @Html.ActionLink(" ", "Index", null, new { @class = "glyphicon glyphicon-arrow-left" })
+</h3>
+

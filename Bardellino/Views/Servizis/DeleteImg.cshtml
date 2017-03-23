@@ -1,0 +1,25 @@
+﻿@model Bardellino.Models.Servizi
+
+@{
+    ViewBag.Title = "DeleteImg";
+}
+
+<h2>Cancella immagine</h2>
+<span class="galla2">
+    <img src="@Url.Content("~/Content/Immagini/Servizi/" + Model.Servizo_Id + "/" + @ViewBag.File)" />
+
+</span>
+<hr />
+<div>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="DeleteImg" class="btn btn-danger" />
+            @Html.ActionLink("Annulla", "EditImg", "Servizis", new { id = Model.Servizo_Id }, new { @Class = "btn btn-primary" })
+        </div>
+    }
+</div>
+

@@ -1,0 +1,58 @@
+﻿@model Bardellino.Models.Promo
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Promo</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.DataI)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DataI)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DataF)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DataF)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Nome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nome)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Descrizione)
+        </dt>
+
+        <dd>
+            @Html.Raw(Model.Descrizione)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Attiva)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Attiva)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Promo_Id }, new {@class="btn btn-success" })
+    @Html.ActionLink("Torna", "Index", null, new {@class= "btn btn-primary"})
+</p>

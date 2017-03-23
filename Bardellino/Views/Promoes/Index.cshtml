@@ -1,0 +1,56 @@
+﻿@model IEnumerable<Bardellino.Models.Promo>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Gestione promo</h2>
+
+<p>
+    <a href="@Url.Action("Create", "Promoes")" class="btn btn-primary"><span class="badge">@ViewBag.PromoCount</span> Nuova</a>
+</p>
+<table class="table table-hover">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.DataI)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DataF)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Nome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Descrizione)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Attiva)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @item.DataI.ToString("dd MMM yyyy")
+        </td>
+        <td>
+            @item.DataF.ToString("dd MMM yyyy")
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nome)
+        </td>
+        <td>
+            @Html.Raw(item.Descrizione)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Attiva)
+        </td>
+        <td>
+            @Html.ActionLink(" ", "Edit", new { id = item.Promo_Id }, new { @class= "fa fa-pencil-square-o fa-2x text-success", title="Modifica" })
+            @Html.ActionLink(" ", "Delete", new { id = item.Promo_Id }, new { @class = "fa fa-trash-o text-danger fa-2x", title = "Cancella" })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,17 +1,46 @@
-﻿@{
-    ViewBag.Title = "Contact";
+﻿@model Bardellino.Models.ForgotViewModel
+@{
+    ViewBag.Title = "Contatti";
 }
-<h2>@ViewBag.Title.</h2>
-<h3>@ViewBag.Message</h3>
+<div class="jumboBardellino">
+    <div class="divContatti">
+        <h2>Contattaci</h2>
+        <div class="row">
+            <div class="col col-md-6 divContatti">
+                <p>
+                    <address>
+                        Cascina Bardellino<br />
+                        Via Roma, 26 - Castel Gabbiano (BG)<br />
+                        <abbr title="Phone">Tel:</abbr>
+                        +39 0373 419535<br />
+                        <abbr title="Cell">Cell:</abbr>
+                        335 6943774/772
+                    </address>
 
-<address>
-    One Microsoft Way<br />
-    Redmond, WA 98052-6399<br />
-    <abbr title="Phone">P:</abbr>
-    425.555.0100
-</address>
+                    <address>
+                        <strong>Mail:</strong>   <a href="mailto:cascinabardellino@gmail.com">cascinabardellino@gmail.com</a>
+                    </address>
 
-<address>
-    <strong>Support:</strong>   <a href="mailto:Support@example.com">Support@example.com</a><br />
-    <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>
-</address>
+                </p>
+            </div>
+            <div class="col col-md-6">
+                <form>
+                    <div class="form-group">
+                        <input class="form-control" id="Nome" placeholder="il tuo nome">
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control" id="Cognome" placeholder="il tuo cognome">
+                    </div>
+                    <div class="form-group">
+                        <input type="email" class="form-control" id="Mail" placeholder="Email">
+                    </div>
+                    <div class="form-group">
+                        <textarea class="form-control" rows="3" placeholder="Messaggio..."></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Invia messaggio</button>
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div>

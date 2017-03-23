@@ -1,0 +1,27 @@
+﻿
+@{
+    ViewBag.Title = "DeleteImgTot";
+}
+
+<h2>Cancella immagine</h2>
+<h4>Questa immagine verrà definitivamente cancellata dal sito.</h4>
+<hr />
+<span class="galla">
+    <img src="@Url.Content("~/Content/Immagini/Servizi/Tot/" + @ViewBag.File)" />
+
+</span>
+<hr />
+<div>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Cancella" class="btn btn-danger" />
+            @Html.ActionLink("Annulla", "EditImgTot", "Servizis", null, new { @Class = "btn btn-primary" })
+        </div>
+    }
+</div>
+
+

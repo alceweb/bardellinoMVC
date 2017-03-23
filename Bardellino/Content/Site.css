@@ -1,14 +1,23 @@
 ﻿body {
     padding-top: 50px;
     padding-bottom: 20px;
+    background-repeat:repeat-x;
 }
 
 /* Set padding to keep content from hitting the edges */
 .body-content {
-    padding-left: 15px;
-    padding-right: 15px;
+    padding: 15px 15px 35px 15px;
+    width:90%;
+    margin:auto;
+    color:#000;
 }
+@media (max-width: 768px) {
+    .body-content {
+        padding:3px;
+        width:100%;
+    }
 
+}
 /* Override the default bootstrap behavior where horizontal description lists 
    will truncate terms that are too long to fit in the left column 
 */
@@ -21,4 +30,252 @@ input,
 select,
 textarea {
     max-width: 280px;
+}
+.hr1{
+    border: 0;
+    height: 1px;
+    background-image: linear-gradient(to right, rgba(255,255,255), rgba(255, 255, 255, 0.00));
+}
+/*navbar modificata*/
+.navbar-default {
+    background :linear-gradient(rgba(140, 123, 91, 1),rgba(0, 0, 0, 0.0)) !important;
+    border:none !important;
+    padding-bottom:40px;
+}
+.navbar-fixed-bottom{
+        background :linear-gradient(rgba(0, 0, 0, 0.0),rgba(140, 123, 91, 1)) !important;
+    color:#fff !important;
+    text-shadow:0px 0px 5px #000;
+}
+
+.navbar-nav li a{
+    color:#fff !important;
+}
+
+.header-logo{
+    font-family: 'kunstler Script';
+    font-size: 4em;
+    float: left;
+    color:#fff !important;
+    text-shadow:0px 0px 5px #000;
+}
+/*Responsive nav-bar modificata*/
+@media (max-width: 768px) {
+    .navbar-default {
+        padding-bottom: 2px;
+    background-color: #8c7b5b !important;
+    }
+    .header-logo {
+        font-size: 3em;
+    }
+}
+@media (max-width: 400px) {
+    .navbar-default {
+        padding-bottom: 0px;
+    }
+.header-logo{
+    font-size: 2.2em;
+    }
+}
+/*Fine navbar modificata*/
+
+.ImgBody{
+    left: 0;
+    min-height: 50%;
+    min-width: 1024px;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index:-9000;
+}
+@media (max-width: 400px) {
+.ImgBody{
+    visibility:hidden;
+    }
+}
+
+.promo{
+    position:absolute;
+    padding: 10px;
+    top:60px;
+    left:20px;
+    margin:10px;
+    border-radius: 10px;
+    border: solid thin #fff;
+    background-color: rgba(114, 108, 95, 0.49);
+    line-height:2em;
+}
+.promo a{
+    color:#fff;
+}
+.promo a :hover{
+    color:#312c2c;
+    text-shadow:0px 0px 5px #fff;
+}
+.promo modal-content{
+    background-color:rgba(114, 108, 95, 0.89) !important;
+}
+/*Responsive promo*/
+@media (max-width: 400px){
+.promo{
+    top:50px;
+}
+}
+/*Jumbo Bardellino*/
+.jumboBardellino{
+	margin:30px auto;
+    background:rgba(126, 94, 33, 0.29);
+    box-shadow: 0px 0px 10px #000;
+    border-radius:5px;
+}
+
+.divServizi{
+    padding:0px 10px 5px 10px;
+    text-align:justify;
+}
+.divServizi p{
+    padding:10px;
+    color:rgb(86, 59, 8);
+}
+    .divServizi a{
+        font-size:2em;
+        color:rgb(86, 59, 8);
+    }
+    .divServizi div {
+     padding: 10px;
+     box-shadow: 0px 0px 2px #fff;
+    }
+    .divServizi div div{
+        box-shadow:none;
+    }
+.divContatti{
+    width:auto;
+    margin:auto;
+    padding:10px;
+    background:rgba(126, 94, 33, 0.29);
+}
+/*Responsive jumbo Bardellino*/
+@media (max-width: 768px) {
+    .jumboBardellino{
+    border-radius:0px;
+
+    }
+.divServizi{
+    padding:0px 3px 1px 3px;
+}
+    .divServizi a{
+        font-size:1.3em;
+    }
+    .divServizi p{
+    border-radius:0px;
+    background:none;
+    color:rgb(86, 59, 8);
+    }
+}
+@media (max-width: 400px) {
+  .jumboBardellino{
+	margin:3px auto;
+}
+.divServizi p{
+    padding:3px;
+}
+    .divServizi a{
+        font-size:1em;
+    }
+    .divServizi div {
+        padding: 0px;
+    }
+}
+
+/*Fine Jumbo Bardellino*/
+/*Galleria fotografica*/
+.galla {
+    display:table;
+}
+.galla div{
+    overflow:hidden;
+    border-radius:6px;
+    float:left;
+    margin:5px;
+    -webkit-box-shadow: 4px 4px 5px rgba(50, 50, 50, 0.75);
+    -moz-box-shadow:    4px 4px 5px rgba(50, 50, 50, 0.75);
+    box-shadow:         4px 4px 5px rgba(50, 50, 50, 0.75);
+}
+.galla span:hover img{
+-webkit-transform:scale(1.8); /*Webkit: Scale up image to 1.2x original size*/
+-moz-transform:scale(1.8); /*Mozilla scale version*/
+-o-transform:scale(1.8); /*Opera scale version*/
+z-index:0;
+ -ms-transform: scale(1.8); /* IE 9 */
+ transition:all 0.7s ease-out;
+}
+.galla img {
+    height:120px;
+    text-align: center;
+    vertical-align: bottom;
+    border-radius:4px;
+ transition:all 1s ease;
+}
+.galla1 {
+    display:table;
+    padding:0px !important;
+    margin:5px;
+    z-index:10;
+}
+.galla1 div{
+    overflow:hidden;
+    border-radius:6px;
+    float:left;
+    margin:5px;
+    -webkit-box-shadow: 4px 4px 5px rgba(50, 50, 50, 0.75);
+    -moz-box-shadow:    4px 4px 5px rgba(50, 50, 50, 0.75);
+    box-shadow:         4px 4px 5px rgba(50, 50, 50, 0.75);
+}
+.galla1 span:hover img{
+-webkit-transform:scale(1.8); /*Webkit: Scale up image to 1.2x original size*/
+-moz-transform:scale(1.8); /*Mozilla scale version*/
+-o-transform:scale(1.8); /*Opera scale version*/
+z-index:0;
+ -ms-transform: scale(1.8); /* IE 9 */
+ transition:all 0.7s ease-out;
+}
+.galla1 div img {
+    height:120px;
+    text-align: center;
+    vertical-align: bottom;
+    border-radius:4px;
+    transition:all 1s ease;
+}
+.galla1 div span b{
+    position:relative;
+    margin-left:-38px;
+    overflow:visible;
+    font-size:1.2em;
+    font-weight:bolder;
+    background:rgba(5, 5, 5, 0.41);
+    border-radius:5px;
+}
+.galla1 div span b a {
+    color:#c11414;
+}
+.galla1 div span c{
+    position:relative;
+    float:left;
+    bottom:26px;
+    margin:0px -38px -26px 0px;
+    overflow:visible;
+    font-size:1.2em;
+    font-weight:bolder;
+    background:rgba(5, 5, 5, 0.41);
+    border-radius:5px;
+
+}
+.galla1 div span canvas a{
+    color:#bde009;
+}
+.mobile{
+    position:fixed;
+    right:0px;
+    bottom:0px;
+    z-index:1045;
 }

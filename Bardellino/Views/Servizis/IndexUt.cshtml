@@ -1,0 +1,53 @@
+﻿@model IEnumerable<Bardellino.Models.Servizi>
+
+@{
+    ViewBag.Title = "IndexUt";
+}
+<div class="jumboBardellino">
+    @if (User.Identity.Name == "cascinabardellino@gmail.com")
+    {
+        <h3>
+            <a href="@Url.Action("Create", "Servizis")" title="Gestone servizi"><span class="glyphicon glyphicon-plus-sign"></span> Aggiungi</a>
+        </h3><hr />
+    }
+    <div class="divServizi">
+
+        @foreach (var item in Model)
+        {
+            if (User.Identity.Name == "cascinabardellino@gmail.com")
+            {
+                <a href="@Url.Action("Edit", "Servizis", new {id = item.Servizo_Id })" title="Testo"><span class="fa fa-pencil text-success pull-left h3"></span></a>
+                <a href="@Url.Action("EditImg", "Servizis", new {id = item.Servizo_Id })" title="Galleria"><span class="fa fa-camera text-primary pull-left h3"></span></a>
+                <a href="@Url.Action("EditImgP", "Servizis", new {id = item.Servizo_Id })" title="Logo"><span class="fa fa-picture-o text-warning pull-left h3"></span></a>
+            }
+            <a class="label" role="button" data-toggle="collapse" href="#@item.Servizo_Id" aria-expanded="false" aria-controls="@item.Servizo_Id">
+                @if (File.Exists(Server.MapPath("~/Content/Immagini/Servizi/" + @item.Servizo_Id + ".jpg")))
+                {
+                    <img class="img-thumbnail img-circle" src="@Url.Content("~/Content/Immagini/Servizi/" + @item.Servizo_Id + ".jpg")" />
+                }
+                @item.Servizio
+            </a>
+            <div class="collapse" id="@item.Servizo_Id">
+                <div class="galla1"  >
+                    @Html.Raw(item.Descrizione)
+
+                        @{
+                            var immagini = Directory.GetFiles(Server.MapPath("/Content/Immagini/Servizi/" + @item.Servizo_Id + "/")).ToList();
+                            foreach (var immagine in immagini)
+                            {
+                                var filename = Path.GetFileName(immagine);
+                                <div style="padding:0px">
+                                    <span>
+                                        <a href="@Url.Content("~/Content/Immagini/Servizi/" + item.Servizo_Id +"/" + @filename)" data-lightbox="example-set" targhet="_blank"><img class="example-image" src="@Url.Content("~/Content/Immagini/Servizi/" + item.Servizo_Id +"/" + @filename)" alt="" /></a>
+                                    </span>
+
+                                </div>
+
+                            }
+                        }
+                </div>
+            </div>
+            <hr class="hr1"/>
+        }
+    </div>
+</div>

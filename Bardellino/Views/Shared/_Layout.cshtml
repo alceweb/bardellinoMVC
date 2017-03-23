@@ -3,37 +3,43 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>@ViewBag.Title</title>
+    <script src="~/Scripts/bootstrap-datetimepicker.min.js"></script>
+    <script src="~/Scripts/moment-with-locales.min.js"></script>
+    <script src="~/Scripts/bootstrap.js"></script>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
+    <div class="navbar navbar-default navbar-fixed-top">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Cascina Bardellino", "Index", "Home", new { area = "" }, new { @class = "navbar-brand header-logo" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    <li>@Html.ActionLink("Dove siamo", "Dove", "Home")</li>
+                    <li>@Html.ActionLink("Contatti", "Contact", "Home")</li>
+                    <li>@Html.ActionLink("Galleria", "Galleria", "Servizis")</li>
+                    <li>@Html.ActionLink("Servizi", "IndexUt", "Servizis")</li>
+                    @if (User.Identity.Name == ("cascinabardellino@gmail.com"))
+                    {
+                        <li>@Html.ActionLink(" Promo", "Index", "Promoes", null, new {@class= "fa fa-google-wallet", title ="Gestione promo" })</li>
+                    }
                 </ul>
-                @Html.Partial("_LoginPartial")
             </div>
-        </div>
     </div>
-    <div class="container body-content">
+    <div class="body-content">
+        <img class="ImgBody" src="@Url.Content("~/Content/Immagini/" + @ViewBag.Title + ".jpg")" />
         @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+        <footer class="navbar-fixed-bottom">
+            <p>
+              @Html.Partial("_LoginPartial")  &copy; @DateTime.Now.Year - Cascina Bardellino
+            </p>
         </footer>
     </div>
 

@@ -1,31 +1,74 @@
-﻿@{
+﻿@model IEnumerable<Bardellino.Models.Promo>
+@{
     ViewBag.Title = "Home Page";
 }
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="http://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+<link href="~/Content/style3.css" rel="stylesheet" />
+<link href="~/Content/slide.css" rel="stylesheet" />
+@*Inizio slideshow*@
+<div class="row">
+
+    <ul class="cb-slideshow">
+        <li>
+            <span>Image 01</span>
+            <div>
+                <h3>serenità</h3>
+            </div>
+        </li>
+        <li>
+            <span>Image 02</span>
+            <div>
+                <h3>
+                    accoglienza
+                </h3>
+            </div>
+        </li>
+        <li>
+            <span>Image 03</span>
+            <div>
+                <h3>tradizione</h3>
+            </div>
+        </li>
+        <li>
+            <span>Image 04</span>
+            <div>
+                <h3>ricordi</h3>
+            </div>
+        </li>
+        <li><span>Image 05</span><div><h3>famiglia</h3></div></li>
+        <li><span>Image 06</span><div><h3>amicizia</h3></div></li>
+    </ul>
+</div>
+@*Fine slideshow*@
+
+@*Inizio promo*@
+
+<div class="promo">
+
+    @foreach (var item in Model)
+    {<!-- Button trigger modal -->
+        <a href="#nogo"data-toggle="modal" data-target="#@item.Promo_Id"><span class="fa fa-google-wallet"> @item.Nome</span></a><br/>
+        <!-- Modal -->
+        <div class="modal fade" id="@item.Promo_Id" tabindex="-1" role="dialog" aria-labelledby="@item.Promo_Id">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header text-center">
+                        @if (User.Identity.Name == "cascinabardellino@gmail.com")
+                        {
+                            <a href="@Url.Action("Edit", "Promoes", new { id = item.Promo_Id})"><span class="fa fa-pencil-square-o fa-2x text-danger pull-left"></span></a>
+
+                        }
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h1 class="modal-title" id="myModalLabel">@item.Nome</h1>
+                        <span class="badge pull-right">dal @item.DataI.ToString("dd MMM")  al @item.DataF.ToString("dd MMM yyyy")</span>
+                    </div>
+                    <div class="modal-body">
+                        @Html.Raw(item.Descrizione)
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
 </div>
 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-    </div>
-</div>
+@*Fine promo*@
