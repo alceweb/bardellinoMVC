@@ -2,9 +2,11 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using System.IO;
+using System.Net.Mail;
 
 namespace Bardellino.Controllers
 {
@@ -14,8 +16,14 @@ namespace Bardellino.Controllers
 
         public ActionResult Index()
         {
-            var oggi = DateTime.Today;
-            var promo = db.Promos.ToList();
+            //seleziono le promo da visualizzare
+            var adesso = DateTime.Today;
+            var promo = db.Promos.Where(p=>p.Attiva == true & p.DataI <= adesso & p.DataF >= adesso).ToList();
+            ViewBag.PromoCount = promo.Count();
+            //Creo la lista di immagini di sfondo
+            var immagini = db.Slides;
+            ViewBag.Immagini = immagini.OrderBy(s=>s.Posizione).ToList();
+
             return View(promo);
         }
 
@@ -30,6 +38,37 @@ namespace Bardellino.Controllers
         {
             ViewBag.Message = "Your contact page.";
 
+            return View();
+        }
+        [HttpPost]
+        public async Task<ActionResult> Contact(InfoViewModels contatti)
+        {
+            if (ModelState.IsValid)
+            {
+                MailMessage message = new MailMessage(
+                    "webservice@cascinabardellino.it",
+                    "cesare@cr-consult.eu, cascinabardellino@gmail.com",
+                    "Richiesta informazioni dal sito cascinabardellino.it",
+                    "Il giorno " + DateTime.Now + "<br/><strong>" +
+                    contatti.Nome + " " +
+                    contatti.Cognome + "</strong> [" +
+                    contatti.Email + "] " +
+                    "<br/> ha inviato una richiesta di informazioni dal sito www.cascinabardellino.itg<hr/>Richiesta: <strong>" +
+                    contatti.Messaggio +
+                    "</strong></li>"
+                    );
+                message.IsBodyHtml = true;
+                using (var smtp = new SmtpClient())
+                {
+                    await smtp.SendMailAsync(message);
+                }
+                return RedirectToAction("FormOk", "Home");
+            }
+            return View(contatti);
+        }
+
+        public ActionResult FormOk()
+        {
             return View();
         }
 

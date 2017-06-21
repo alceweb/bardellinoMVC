@@ -1,0 +1,43 @@
+﻿@model IEnumerable<Bardellino.Models.Slide>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Gestione sfondi</h2>
+
+<table class="table table-hover table-sfondi">
+    <thead>
+        <tr>
+            <th>
+
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Testo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Immagine)
+            </th>
+            <th></th>
+        </tr>
+
+    </thead>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            <img src="@Url.Content("~/Content/Immagini/Slide/" + item.Immagine)" />
+        </td>
+        <td>
+            <span>@Html.DisplayFor(modelItem => item.Testo)</span>
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Immagine)
+        </td>
+        <td>
+            @Html.ActionLink(" ", "Edit", new { id = item.Slide_Id}, new{ @class= "fa fa-pencil-square-o text-info fa-4x", title = "Modifica" })
+        </td>
+    </tr>
+}
+
+</table>

@@ -11,6 +11,7 @@
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
+    @*Menu di navigazione*@
     <div class="navbar navbar-default navbar-fixed-top">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -29,7 +30,12 @@
                     @if (User.Identity.Name == ("cascinabardellino@gmail.com"))
                     {
                         <li>@Html.ActionLink(" Promo", "Index", "Promoes", null, new {@class= "fa fa-google-wallet", title ="Gestione promo" })</li>
+                        <li>@Html.ActionLink(" Sfondi", "Index", "Slides", null, new { @class = "fa fa-picture-o", title = "Gestione sfondi" })</li>
                     }
+                </ul>
+                <ul class="nav navbar-collapse navbar-right">
+                    <li class="h3">@Html.Partial("_LoginPartial")
+                    </li>
                 </ul>
             </div>
     </div>
@@ -42,9 +48,50 @@
             </p>
         </footer>
     </div>
+    @*Fine menu navigazione*@
+    @*Social laterale destra*@
 
+    <div class="docu">
+        <p>
+            <a href="#nogo" id="xdocu" title="Social"><span class="glyphicon glyphicon-remove text-danger"></span></a><br />
+        </p>
+            <ul>
+                <li>
+                    <a href="#nogo" target="_blank" title="Seguici su Facebook">
+                        <img src="~/Content/Immagini/fb.png" />
+                    </a>
+
+                </li>
+            </ul>
+            <ul>
+                <li>
+                    <a href="https://www.instagram.com/cascina.bardellino/" target="_blank" title="Seguici su Instagram">
+                        <img src="~/Content/Immagini/Instagram.png" />
+                    </a>
+
+                </li>
+            </ul>
+        <ul>
+            <li>
+                <a href="https://www.matrimonio.com/ristoranti-ricevimenti/cascina-bardellino--e105767/" target="_blank" title="Siamo su matrimonio.com">
+                    <img src="~/Content/Immagini/Mat.png" />
+                </a>
+
+            </li>
+        </ul>
+   </div>
+
+    @*Fine Socal laterale destra*@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+    <script type="text/javascript">
+        $('#bt').mouseover((function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        }));
+        $('#xdocu').click(function () {
+            $('.docu ul li').toggle('normal');
+        });
+    </script>
 </body>
 </html>

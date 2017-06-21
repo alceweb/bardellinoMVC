@@ -18,7 +18,7 @@ namespace Bardellino.Controllers
         // GET: Promoes
         public ActionResult Index()
         {
-            var promo = db.Promos.ToList();
+            var promo = db.Promos.OrderBy(p=>p.DataI).ToList();
             ViewBag.PromoCount = promo.Count();
             return View(promo);
         }

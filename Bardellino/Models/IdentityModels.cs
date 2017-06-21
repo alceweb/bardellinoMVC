@@ -32,7 +32,7 @@ namespace Bardellino.Models
         [DefaultValue("True")]
         public bool Pubblica { get; set; }
     }
-
+    
     public class Promo
     {
         [Key]
@@ -52,6 +52,7 @@ namespace Bardellino.Models
         [Display(Name ="Attiva")]
         public bool Attiva { get; set; }
     }
+
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
@@ -65,5 +66,6 @@ namespace Bardellino.Models
         }
         public DbSet<Bardellino.Models.Servizi> Servizis { get; set; }
         public DbSet<Bardellino.Models.Promo> Promos { get; set; }
+        public DbSet<Bardellino.Models.Slide> Slides { get; set; }
     }
 }

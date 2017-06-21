@@ -17,7 +17,8 @@ namespace Bardellino.Models
         [Required]
         [Display(Name = "Posta elettronica")]
         public string Email { get; set; }
-
+        [Display(Name ="Tel./Cell.")]
+        public string Tel { get; set; }
         [Display(Name ="Messaggio")]
         public string Messaggio { get; set; }
     }

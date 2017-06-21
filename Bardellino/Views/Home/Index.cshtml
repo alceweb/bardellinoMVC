@@ -7,68 +7,57 @@
 <link href="~/Content/slide.css" rel="stylesheet" />
 @*Inizio slideshow*@
 <div class="row">
-
     <ul class="cb-slideshow">
-        <li>
-            <span>Image 01</span>
-            <div>
-                <h3>serenità</h3>
-            </div>
-        </li>
-        <li>
-            <span>Image 02</span>
-            <div>
-                <h3>
-                    accoglienza
-                </h3>
-            </div>
-        </li>
-        <li>
-            <span>Image 03</span>
-            <div>
-                <h3>tradizione</h3>
-            </div>
-        </li>
-        <li>
-            <span>Image 04</span>
-            <div>
-                <h3>ricordi</h3>
-            </div>
-        </li>
-        <li><span>Image 05</span><div><h3>famiglia</h3></div></li>
-        <li><span>Image 06</span><div><h3>amicizia</h3></div></li>
+        @foreach (var item in ViewBag.Immagini)
+        {
+            <li>
+                <span>Image @item.Posizione</span>
+                <div>
+                    <h3>
+                        @item.Testo
+                    </h3>
+                </div>
+            </li>
+        }
     </ul>
 </div>
 @*Fine slideshow*@
 
 @*Inizio promo*@
+@if (ViewBag.PromoCount > 0)
+{
+    <div class="promo">
+        @if (User.Identity.Name == ("cascinabardellino@gmail.com"))
+        {
+            <a href="@Url.Action("Create", "Promoes")" class="fa fa-plus-circle">  Nuovo</a><hr class="hr1" />
+        }
 
-<div class="promo">
-
-    @foreach (var item in Model)
-    {<!-- Button trigger modal -->
-        <a href="#nogo"data-toggle="modal" data-target="#@item.Promo_Id"><span class="fa fa-google-wallet"> @item.Nome</span></a><br/>
+        @foreach (var item in Model)
+        {<!-- Button trigger modal -->
+            <a href="#nogo" data-toggle="modal" data-target="#@item.Promo_Id"><span class="fa fa-google-wallet"> @item.Nome</span></a><br />
         <!-- Modal -->
-        <div class="modal fade" id="@item.Promo_Id" tabindex="-1" role="dialog" aria-labelledby="@item.Promo_Id">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header text-center">
-                        @if (User.Identity.Name == "cascinabardellino@gmail.com")
-                        {
-                            <a href="@Url.Action("Edit", "Promoes", new { id = item.Promo_Id})"><span class="fa fa-pencil-square-o fa-2x text-danger pull-left"></span></a>
+            <div class="modal fade" id="@item.Promo_Id" tabindex="-1" role="dialog" aria-labelledby="@item.Promo_Id">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header text-center">
+                            @if (User.Identity.Name == "cascinabardellino@gmail.com")
+                            {
+                                <a href="@Url.Action("Edit", "Promoes", new { id = item.Promo_Id})"><span class="fa fa-pencil-square-o fa-2x text-danger pull-left"></span></a>
 
-                        }
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h1 class="modal-title" id="myModalLabel">@item.Nome</h1>
-                        <span class="badge pull-right">dal @item.DataI.ToString("dd MMM")  al @item.DataF.ToString("dd MMM yyyy")</span>
-                    </div>
-                    <div class="modal-body">
-                        @Html.Raw(item.Descrizione)
+                            }
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h1 class="modal-title" id="myModalLabel">@item.Nome</h1>
+                            <span class="badge pull-right">dal @item.DataI.ToString("dd MMM")  al @item.DataF.ToString("dd MMM yyyy")</span>
+                        </div>
+                        <div class="modal-body">
+                            @Html.Raw(item.Descrizione)
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    }
-</div>
+        }
+    </div>
 
+}
 @*Fine promo*@
+

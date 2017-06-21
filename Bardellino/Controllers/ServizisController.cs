@@ -24,9 +24,10 @@ namespace Bardellino.Controllers
             return View(servizi);
         }
 
-        public ActionResult IndexUt()
+        public ActionResult IndexUt(InfoViewModels contatti)
         {
             var servizi = db.Servizis.Where(s => s.Pubblica == true).ToList();
+            ViewBag.Servizi = servizi;
             return View(servizi);
         }
 

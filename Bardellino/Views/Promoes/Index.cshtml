@@ -8,49 +8,58 @@
 
 <p>
     <a href="@Url.Action("Create", "Promoes")" class="btn btn-primary"><span class="badge">@ViewBag.PromoCount</span> Nuova</a>
+    <span class="alert alert-success pull-right">Quelle evidenziate sono attive</span>
 </p>
 <table class="table table-hover">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.DataI)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DataF)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Nome)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Descrizione)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Attiva)
-        </th>
-        <th></th>
-    </tr>
+    <thead>
+        <tr>
+            <th></th>
+            <th>
+                @Html.DisplayNameFor(model => model.DataI)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DataF)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Attiva)
+            </th>
+            <th></th>
+        </tr>
+
+    </thead>
 
 @foreach (var item in Model) {
-    <tr>
-        <td>
-            @item.DataI.ToString("dd MMM yyyy")
-        </td>
-        <td>
-            @item.DataF.ToString("dd MMM yyyy")
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Nome)
-        </td>
-        <td>
-            @Html.Raw(item.Descrizione)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Attiva)
-        </td>
-        <td>
-            @Html.ActionLink(" ", "Edit", new { id = item.Promo_Id }, new { @class= "fa fa-pencil-square-o fa-2x text-success", title="Modifica" })
-            @Html.ActionLink(" ", "Delete", new { id = item.Promo_Id }, new { @class = "fa fa-trash-o text-danger fa-2x", title = "Cancella" })
-        </td>
-    </tr>
-}
+    var adesso = DateTime.Today;
+    var lab = "";
+    var ok = "fa fa-thumbs-o-down fa-2x text-danger";
+    if(item.Attiva == true && item.DataI <= adesso && item.DataF >= adesso)
+    {
+        lab = "alert alert-success";
+        ok = "fa fa-thumbs-o-up fa-2x text-success";
+    }
+    <tr class="@lab">
+        <td><span class="@ok"></span></td>
+            <td>
+                @item.DataI.ToString("dd MMM yyyy")
+            </td>
+            <td>
+                @item.DataF.ToString("dd MMM yyyy")
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Attiva)
+            </td>
+            <td>
+                @Html.ActionLink(" ", "Edit", new { id = item.Promo_Id }, new { @class = "fa fa-pencil-square-o fa-2x text-success", title = "Modifica" })
+                @Html.ActionLink(" ", "Details", new { id = item.Promo_Id }, new { @class = "fa fa-search text-primary fa-2x", title = "Dettagli" })
+                @Html.ActionLink(" ", "Delete", new { id = item.Promo_Id }, new { @class = "fa fa-trash-o text-danger fa-2x", title = "Cancella" })
+            </td>
+        </tr>
+    }
 
 </table>

@@ -172,6 +172,7 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PromoesController.cs" />
     <Compile Include="Controllers\ServizisController.cs" />
+    <Compile Include="Controllers\SlidesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -191,11 +192,24 @@
     <Compile Include="Migrations\201702231730068_publicaServizi.Designer.cs">
       <DependentUpon>201702231730068_publicaServizi.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201705101232070_slide.cs" />
+    <Compile Include="Migrations\201705101232070_slide.Designer.cs">
+      <DependentUpon>201705101232070_slide.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705101346419_slide1.cs" />
+    <Compile Include="Migrations\201705101346419_slide1.Designer.cs">
+      <DependentUpon>201705101346419_slide1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705110735124_slide2.cs" />
+    <Compile Include="Migrations\201705110735124_slide2.Designer.cs">
+      <DependentUpon>201705110735124_slide2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\FormViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Slide.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -209,22 +223,20 @@
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\font-awesome.min.css" />
     <Content Include="Content\Immagini\close.png" />
+    <Content Include="Content\Immagini\fb.png" />
     <Content Include="Content\Immagini\Galleria.jpg" />
     <Content Include="Content\Immagini\IndexUt.jpg" />
+    <Content Include="Content\Immagini\Instagram.png" />
+    <Content Include="Content\Immagini\Mat.png" />
     <Content Include="Content\Immagini\next.png" />
+    <Content Include="Content\Immagini\ok.png" />
     <Content Include="Content\Immagini\prev.png" />
-    <Content Include="Content\Immagini\Slide\1.jpg" />
     <Content Include="Content\lightbox.css" />
     <Content Include="Content\slide.css" />
     <Content Include="Content\Immagini\Contatti.jpg" />
     <Content Include="Content\Immagini\Dove.jpg" />
     <Content Include="Content\Immagini\Home page.jpg" />
     <Content Include="Content\Immagini\Servizi.jpg" />
-    <Content Include="Content\Immagini\Slide\2.jpg" />
-    <Content Include="Content\Immagini\Slide\3.jpg" />
-    <Content Include="Content\Immagini\Slide\4.jpg" />
-    <Content Include="Content\Immagini\Slide\6.jpg" />
-    <Content Include="Content\Immagini\Slide\5.jpg" />
     <Content Include="Content\style2.css" />
     <Content Include="Content\style3.css" />
     <Content Include="favicon.ico" />
@@ -684,6 +696,12 @@
     <Content Include="Views\Servizis\EditImgTot.cshtml" />
     <Content Include="Views\Servizis\DeleteImgTot.cshtml" />
     <Content Include="Views\Servizis\EditImgCel.cshtml" />
+    <Content Include="Views\Home\FormOk.cshtml" />
+    <Content Include="Views\Slides\Create.cshtml" />
+    <Content Include="Views\Slides\Delete.cshtml" />
+    <Content Include="Views\Slides\Details.cshtml" />
+    <Content Include="Views\Slides\Edit.cshtml" />
+    <Content Include="Views\Slides\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -692,6 +710,8 @@
     <Folder Include="Content\Immagini\Servizi\3\" />
     <Folder Include="Content\Immagini\Servizi\4\" />
     <Folder Include="Content\Immagini\Servizi\Tot\" />
+    <Folder Include="Content\Immagini\Slide\" />
+    <Folder Include="DAL\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -710,6 +730,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201702231730068_publicaServizi.resx">
       <DependentUpon>201702231730068_publicaServizi.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705101232070_slide.resx">
+      <DependentUpon>201705101232070_slide.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705101346419_slide1.resx">
+      <DependentUpon>201705101346419_slide1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705110735124_slide2.resx">
+      <DependentUpon>201705110735124_slide2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

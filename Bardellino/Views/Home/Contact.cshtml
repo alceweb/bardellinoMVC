@@ -1,4 +1,4 @@
-﻿@model Bardellino.Models.ForgotViewModel
+﻿@model Bardellino.Models.InfoViewModels
 @{
     ViewBag.Title = "Contatti";
 }
@@ -6,40 +6,57 @@
     <div class="divContatti">
         <h2>Contattaci</h2>
         <div class="row">
-            <div class="col col-md-6 divContatti">
+            <div class="col col-md-4">
                 <p>
                     <address>
                         Cascina Bardellino<br />
-                        Via Roma, 26 - Castel Gabbiano (BG)<br />
+                        Via Roma, 26 - Castel Gabbiano (CR)<br />
                         <abbr title="Phone">Tel:</abbr>
                         +39 0373 419535<br />
                         <abbr title="Cell">Cell:</abbr>
                         335 6943774/772
                     </address>
-
                     <address>
-                        <strong>Mail:</strong>   <a href="mailto:cascinabardellino@gmail.com">cascinabardellino@gmail.com</a>
+                        cascinabardellino@gmail.com<br/>
+                        <a href="mailto:cascinabardellino@gmail.com" title="cascinabardellino@gmail.com"><span class="fa fa-envelope-o fa-4x"></span></a>
                     </address>
 
                 </p>
             </div>
-            <div class="col col-md-6">
-                <form>
-                    <div class="form-group">
-                        <input class="form-control" id="Nome" placeholder="il tuo nome">
-                    </div>
-                    <div class="form-group">
-                        <input class="form-control" id="Cognome" placeholder="il tuo cognome">
-                    </div>
-                    <div class="form-group">
-                        <input type="email" class="form-control" id="Mail" placeholder="Email">
-                    </div>
-                    <div class="form-group">
-                        <textarea class="form-control" rows="3" placeholder="Messaggio..."></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Invia messaggio</button>
-                </form>
+@using (Html.BeginForm("Contact", "Home", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    <div class="col col-md-8">
+        <form>
+            <div class="form-group">
+                <div class="col-md-10">
+                    @Html.TextBoxFor(m => m.Nome, new { @class = "form-control", @placeholder = "Il tuo nome"})
+                </div>
             </div>
+            <div class="form-group">
+                <div class="col-md-10">
+                    @Html.TextBoxFor(m => m.Cognome, new { @class = "form-control", @placeholder = "Il tuo cognome" })
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-10">
+                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @placeholder = "La tua mail" })
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-10">
+                    @Html.TextBoxFor(m => m.Tel, new { @class = "form-control", @placeholder = "Telefono o cellulare" })
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-10">
+                    @Html.TextAreaFor(m => m.Messaggio, new { @class = "form-control", @placeholder = "Il tuo messaggio" })
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Invia messaggio</button>
+        </form>
+    </div>
+
+}
         </div>
 
     </div>

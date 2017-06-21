@@ -4,10 +4,9 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<h2>Dettagli</h2>
 
 <div>
-    <h4>Promo</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -38,7 +37,7 @@
             @Html.DisplayNameFor(model => model.Descrizione)
         </dt>
 
-        <dd>
+        <dd class="well well-lg">
             @Html.Raw(Model.Descrizione)
         </dd>
 
@@ -52,7 +51,8 @@
 
     </dl>
 </div>
+<hr />
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.Promo_Id }, new {@class="btn btn-success" })
-    @Html.ActionLink("Torna", "Index", null, new {@class= "btn btn-primary"})
+    @Html.ActionLink("Annulla", "Index", null, new {@class= "btn btn-primary"})
 </p>

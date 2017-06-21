@@ -29,6 +29,14 @@
             </a>
             <div class="collapse" id="@item.Servizo_Id">
                 <div class="galla1"  >
+                    <!-- Inizio trigger modal informazioni -->
+                    
+                    <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#info @item.Servizo_Id">
+                        Informazioni
+                    </button>
+
+                    <!-- Fine trigger modal informazioni -->
+
                     @Html.Raw(item.Descrizione)
 
                         @{
@@ -48,6 +56,26 @@
                 </div>
             </div>
             <hr class="hr1"/>
-        }
+                            <!-- Modal informazioni -->
+                            <div class="modal fade" id="info @item.Servizo_Id" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                            <h4 class="modal-title text-center" id="myModalLabel">Info per @item.Servizio</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            ...
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Chiudi</button>
+                                            <button type="button" class="btn btn-primary">Invia</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Fine Modal informazioni -->
+
+                            }
     </div>
 </div>
