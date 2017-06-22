@@ -9,6 +9,8 @@ using System.Web.Mvc;
 using Bardellino.Models;
 using System.Web.Helpers;
 using System.IO;
+using System.Net.Mail;
+using System.Threading.Tasks;
 
 namespace Bardellino.Controllers
 {
@@ -24,13 +26,56 @@ namespace Bardellino.Controllers
             return View(servizi);
         }
 
-        public ActionResult IndexUt(InfoViewModels contatti)
+        public ActionResult IndexUt()
         {
-            var servizi = db.Servizis.Where(s => s.Pubblica == true).ToList();
-            ViewBag.Servizi = servizi;
-            return View(servizi);
+            if(User.Identity.Name == "cascinabardellino@gmail.com")
+            {
+            var servizi = db.Servizis.ToList();
+             ViewBag.Servizi = servizi;
+             return View(servizi);
+          }
+            else
+            {
+                var servizi = db.Servizis.Where(s => s.Pubblica == true).ToList();
+                ViewBag.Servizi = servizi;
+                return View(servizi);
+            }
         }
 
+        public ActionResult IndexUtMail(string servizio)
+        {
+            servizio = Request.QueryString["servizio"];
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> IndexUtMail(ServiziMailViewModels servizi, string servizio)
+        {
+            if (ModelState.IsValid)
+            {
+                MailMessage message = new MailMessage(
+                    "webservice@cascinabardellino.it",
+                    "cesare@cr-consult.eu, cascinabardellino@gmail.com",
+                    "Richiesta informazioni dal sito cascinabardellino.it",
+                    "Il giorno " + DateTime.Now + "<br/><strong>" +
+                    servizi.Nome + " " +
+                    servizi.Cognome + "</strong> [" +
+                    servizi.Email + "] " +
+                    "<br/> ha inviato una richiesta di informazioni dal sito www.cascinabardellino.it<hr/>Servizio: <strong>" +
+                    servizio +
+                    "</strong><br/>Testo del messaggio: <strong>" +
+                    servizi.Messaggio +
+                    "</strong></li>"
+                    );
+                message.IsBodyHtml = true;
+                using (var smtp = new SmtpClient())
+                {
+                    await smtp.SendMailAsync(message);
+                }
+                return RedirectToAction("FormOk", "Home");
+            }
+            return View(servizi);
+        }
         // GET: Servizis/Details/5
         public ActionResult Details(int? id)
         {

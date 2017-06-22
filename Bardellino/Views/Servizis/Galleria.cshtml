@@ -32,33 +32,64 @@
 @*Inizio galleria servizi*@
     @foreach (var item in Model)
     {
-        <hr />
-        <h3>
-            <span class="badge">@item.Servizio</span>
-            @if (User.Identity.Name == "cascinabardellino@gmail.com")
-            {
-                <a href="@Url.Action("EditImg", "Servizis", new {id = item.Servizo_Id })" title="Aggiungi immagine"><span class="fa fa-plus-circle text-success"></span></a>
+        <div>
+            @{
+                var immagini = Directory.GetFiles(Server.MapPath("/Content/Immagini/Servizi/" + item.Servizo_Id + "/")).ToList();
+                if (User.Identity.Name == "cascinabardellino@gmail.com")
+                {
+                    <hr class="hr1" />
+                    <span class="badge">@item.Servizio</span>
+                        <a href="@Url.Action("EditImg", "Servizis", new {id = item.Servizo_Id })" title="Aggiungi immagine" class="h2"><span class="fa fa-plus-circle text-success"></span></a>
+                    if (immagini.Count() > 0)
+                    {
+                        <div class="galla1">
+                            @foreach (var immagine in immagini)
+                            {
+                                var filename = Path.GetFileName(immagine);
+                                <div>
+                                    <span>
+                                        <a href="@Url.Content("~/Content/Immagini/Servizi/" + item.Servizo_Id + "/" + @filename)" data-lightbox="example-set"><img src="@Url.Content("~/Content/Immagini/Servizi/" + item.Servizo_Id +"/" + @filename)" alt="" /></a>
+                                        @if (User.Identity.Name == "cascinabardellino@gmail.com")
+                                        {
+                                            <c><a href="@Url.Action("ImgRotateD", "Servizis", new { file = @item.Servizo_Id + "/" + @filename })" title="ruota immagine"> <span class="fa fa-undo"> </span> </a></c>
+                                            <b><a href="@Url.Action("DeleteImg", "Servizis", new {id = item.Servizo_Id, file = @filename })" title="Cancella immagine"> X </a></b>
+                                        }
+                                    </span>
+                                </div>
+                            }
+                        </div>
+
+                    }
+                }
+                else
+                {
+                    if (immagini.Count() > 0)
+                    {
+                        <hr class="hr1" />
+                        <span class="badge">@item.Servizio</span>
+                        <div class="galla1">
+                            @foreach (var immagine in immagini)
+                            {
+                                var filename = Path.GetFileName(immagine);
+                                <div>
+                                    <span>
+                                        <a href="@Url.Content("~/Content/Immagini/Servizi/" + item.Servizo_Id + "/" + @filename)" data-lightbox="example-set"><img src="@Url.Content("~/Content/Immagini/Servizi/" + item.Servizo_Id +"/" + @filename)" alt="" /></a>
+                                        @if (User.Identity.Name == "cascinabardellino@gmail.com")
+                                        {
+                                            <c><a href="@Url.Action("ImgRotateD", "Servizis", new { file = @item.Servizo_Id + "/" + @filename })" title="ruota immagine"> <span class="fa fa-undo"> </span> </a></c>
+                                            <b><a href="@Url.Action("DeleteImg", "Servizis", new {id = item.Servizo_Id, file = @filename })" title="Cancella immagine"> X </a></b>
+                                        }
+                                    </span>
+                                </div>
+                            }
+                        </div>
+
+                    }
+                }
             }
 
-        </h3>
-        var immagini = Directory.GetFiles(Server.MapPath("/Content/Immagini/Servizi/" + item.Servizo_Id + "/")).ToList();
-        <div class="galla1">
-            @foreach (var immagine in immagini)
-            {
-                var filename = Path.GetFileName(immagine);
-                <div>
-                    <span>
-                        <a href="@Url.Content("~/Content/Immagini/Servizi/" + item.Servizo_Id + "/" + @filename)" data-lightbox="example-set"><img src="@Url.Content("~/Content/Immagini/Servizi/" + item.Servizo_Id +"/" + @filename)" alt="" /></a>
-                        @if (User.Identity.Name == "cascinabardellino@gmail.com")
-                        {
-                            <c><a href="@Url.Action("ImgRotateD", "Servizis", new { file = @item.Servizo_Id + "/" + @filename })" title="ruota immagine"> <span class="fa fa-undo"> </span> </a></c>
-                            <b><a href="@Url.Action("DeleteImg", "Servizis", new {id = item.Servizo_Id, file = @filename })" title="Cancella immagine"> X </a></b>
-                        }
-                    </span>
-                </div>
-            }
         </div>
-    }
+                }
 @*fine galleria servizi*@
 
 @*Pulsante mobile*@
@@ -69,6 +100,3 @@
     </div>
 
 }
-<div class="row">
-    qui
-</div>

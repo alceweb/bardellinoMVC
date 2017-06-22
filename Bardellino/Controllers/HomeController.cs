@@ -7,6 +7,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.IO;
 using System.Net.Mail;
+using System.Threading;
 
 namespace Bardellino.Controllers
 {
@@ -37,12 +38,17 @@ namespace Bardellino.Controllers
         public ActionResult Contact()
         {
             ViewBag.Message = "Your contact page.";
+            ViewBag.Cultura = new HtmlString(Thread.CurrentThread.CurrentCulture.Name);
+            ViewBag.UICultura = new HtmlString(Thread.CurrentThread.CurrentUICulture.Name);
+            Console.WriteLine("The current UI culture is {0}",
+            Thread.CurrentThread.CurrentUICulture.Name);
 
             return View();
         }
         [HttpPost]
         public async Task<ActionResult> Contact(InfoViewModels contatti)
         {
+
             if (ModelState.IsValid)
             {
                 MailMessage message = new MailMessage(

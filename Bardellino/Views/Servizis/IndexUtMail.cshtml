@@ -1,13 +1,12 @@
-﻿@model Bardellino.Models.InfoViewModels
+﻿@model Bardellino.Models.ServiziMailViewModels
 
 @{
-    ViewBag.Title = "Contatti";
+    ViewBag.Title = "IndexUtMail";
 }
+
 <div class="jumboBardellino">
     <div class="divContatti">
-        <h2>Contattaci</h2>
-        <p>Cultura: @ViewBag.Cultura</p>
-        <p>UICultura: @ViewBag.UICultura</p>
+        <h2>Richiesta informazioni</h2>
         <div class="row">
             <div class="col col-md-4">
                 <p>
@@ -26,14 +25,14 @@
 
                 </p>
             </div>
-            @using (Html.BeginForm("Contact", "Home", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+            @using (Html.BeginForm("IndexUtMail", "Servizis", FormMethod.Post, new {servizio = @Request.QueryString["servizio"], @class = "form-horizontal", role = "form" }))
             {
                 <div class="col col-md-8">
                     <form>
                         <div class="form-group">
                             <div class="col col-md-10">
                                 <div class="alert alert-warning">
-                                    <span class="h3">Inserisci i dati per la tua richiesta</span>
+                                    <span class="h3">Richiesta informazioni per <strong>@Request.QueryString["servizio"]</strong></span>
                                     @Html.ValidationSummary("", new { @class = "text-danger" })
                                 </div>
                             </div>
@@ -64,6 +63,7 @@
                             </div>
                         </div>
                         <button type="submit" class="btn btn-bardellino">Invia messaggio</button>
+                        @Html.ActionLink("Torna ai servizi", "IndexUt", "Servizis", new {@class="btn btn-success" })
                     </form>
                 </div>
 
@@ -72,3 +72,4 @@
 
     </div>
 </div>
+

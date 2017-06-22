@@ -10,34 +10,32 @@
             <a href="@Url.Action("Create", "Servizis")" title="Gestone servizi"><span class="glyphicon glyphicon-plus-sign"></span> Aggiungi</a>
         </h3><hr />
     }
+@using (Html.BeginForm("IndexUt", "Servizis", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
     <div class="divServizi">
-
         @foreach (var item in Model)
         {
             if (User.Identity.Name == "cascinabardellino@gmail.com")
             {
                 <a href="@Url.Action("Edit", "Servizis", new {id = item.Servizo_Id })" title="Testo"><span class="fa fa-pencil text-success pull-left h3"></span></a>
-                <a href="@Url.Action("EditImg", "Servizis", new {id = item.Servizo_Id })" title="Galleria"><span class="fa fa-camera text-primary pull-left h3"></span></a>
-                <a href="@Url.Action("EditImgP", "Servizis", new {id = item.Servizo_Id })" title="Logo"><span class="fa fa-picture-o text-warning pull-left h3"></span></a>
+                    <a href="@Url.Action("EditImg", "Servizis", new {id = item.Servizo_Id })" title="Galleria"><span class="fa fa-camera text-primary pull-left h3"></span></a>
+                    <a href="@Url.Action("EditImgP", "Servizis", new {id = item.Servizo_Id })" title="Logo"><span class="fa fa-picture-o text-warning pull-left h3"></span></a>
             }
-            <a class="label" role="button" data-toggle="collapse" href="#@item.Servizo_Id" aria-expanded="false" aria-controls="@item.Servizo_Id">
-                @if (File.Exists(Server.MapPath("~/Content/Immagini/Servizi/" + @item.Servizo_Id + ".jpg")))
-                {
-                    <img class="img-thumbnail img-circle" src="@Url.Content("~/Content/Immagini/Servizi/" + @item.Servizo_Id + ".jpg")" />
-                }
-                @item.Servizio
-            </a>
-            <div class="collapse" id="@item.Servizo_Id">
-                <div class="galla1"  >
-                    <!-- Inizio trigger modal informazioni -->
-                    
-                    <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#info @item.Servizo_Id">
-                        Informazioni
-                    </button>
+               <a class="h2" role="button" data-toggle="collapse" href="#@item.Servizo_Id" aria-expanded="false" aria-controls="@item.Servizo_Id">
+                    @if (File.Exists(Server.MapPath("~/Content/Immagini/Servizi/" + @item.Servizo_Id + ".jpg")))
+                    {
+                        <img class="img-thumbnail img-circle" src="@Url.Content("~/Content/Immagini/Servizi/" + @item.Servizo_Id + ".jpg")" />
+                    }
+                    @item.Servizio
+                </a>
+                <di class="collapse" id="@item.Servizo_Id">
+                    <p>
+                        @Html.ActionLink("Contattaci", "IndexUtMail", "Servizis", new { servizio = item.Servizio }, new { @class = "btn btn-bardellino btn-xs" })
 
-                    <!-- Fine trigger modal informazioni -->
 
-                    @Html.Raw(item.Descrizione)
+                    </p>
+                    <div class="galla1">
+                        @Html.Raw(item.Descrizione)
 
                         @{
                             var immagini = Directory.GetFiles(Server.MapPath("/Content/Immagini/Servizi/" + @item.Servizo_Id + "/")).ToList();
@@ -53,29 +51,14 @@
 
                             }
                         }
-                </div>
-            </div>
-            <hr class="hr1"/>
-                            <!-- Modal informazioni -->
-                            <div class="modal fade" id="info @item.Servizo_Id" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                                <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                            <h4 class="modal-title text-center" id="myModalLabel">Info per @item.Servizio</h4>
-                                        </div>
-                                        <div class="modal-body">
-                                            ...
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-default" data-dismiss="modal">Chiudi</button>
-                                            <button type="button" class="btn btn-primary">Invia</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Fine Modal informazioni -->
+                    </div>
+                </di>
+                <hr class="hr1" />
 
                             }
     </div>
+
+                            }
+
 </div>
+
